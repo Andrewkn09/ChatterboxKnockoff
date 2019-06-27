@@ -27,9 +27,8 @@ module.exports.Rooms = {
 };
 module.exports.Users = {
   addUser: (req, res) => {
-    console.log(req.body.username);
     db.Users.addUser(req.body.username, (err, result) => {
-      err ? handleError(err, res) : res.send('Added user');
+      err ? res.sendStatus(500) : res.send('Added user');
     });
   }
 };

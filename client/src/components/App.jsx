@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import Messages from './Messages.jsx';
 import SearchForm from './SearchForm';
+import RoomForm from './RoomForm';
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -25,8 +26,10 @@ export default class App extends Component {
     while (!currentUser) {
       var currentUser = prompt('Enter username');
     }
+    Axios.post('/users', { currentUser }).catch(err =>
+      console.log('User exists already')
+    );
     this.setState({ currentUser }, this.updateMessages);
-    Axios.post('/users', { currentUser }).catch(err => console.log(err));
   }
 
   render() {
@@ -35,6 +38,7 @@ export default class App extends Component {
       <div>
         <h1>Chatterbox</h1>
         <div>
+          <RoomForm />
           <SearchForm
             username={currentUser}
             roomname={currentRoom}
