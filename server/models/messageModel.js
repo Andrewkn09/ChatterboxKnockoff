@@ -2,7 +2,13 @@ const db = require('../../sql/index.js');
 
 module.exports.Messages = {
   getMessages: roomname => {},
-  saveMessage: message => {}
+  saveMessage: ({ message, username, roomname }, callback) => {
+    sql = `INSERT INTO messages (message, userID, messageID) 
+          VALUES ( ?,
+            (SELECT id FROM users WHERE username = ?), 
+             (SELECT id FROM rooms WHERE roomname = ?))`;
+    db.query(sql, [message, username, roomname], callback);
+  }
 };
 
 module.exports.Rooms = {

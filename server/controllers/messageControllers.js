@@ -1,18 +1,27 @@
 const db = require('../models/messageModel');
+var addID = function(message, id) {
+  var newMessage = message;
+  newMessage.id = id;
+  return newMessage;
+};
 module.exports.Messages = {
-  addMessage: (req, res) => {},
-  getMessages: (req, res) => {}
+  getMessages: (req, res) => {},
+  addMessage: (req, res) => {
+    db.Messages.saveMessage(req.body, (err, { insertId }) => {
+      err ? res.sendStatus(400) : res.send(addID(req.body, insertId));
+    });
+  }
 };
 
 module.exports.Rooms = {
-  addRoom: (req, res) => {
-    db.Rooms.addRoom(req.body.roomname, (err, result) => {
-      err ? res.sendStatus(400) : res.send('Added room');
-    });
-  },
   getRooms: (req, res) => {
     db.Rooms.getRooms((err, result) => {
       err ? console.log(err) : res.send(result);
+    });
+  },
+  addRoom: (req, res) => {
+    db.Rooms.addRoom(req.body.roomname, (err, result) => {
+      err ? res.sendStatus(400) : res.send('Added room');
     });
   }
 };
