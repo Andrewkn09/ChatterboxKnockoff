@@ -3,10 +3,10 @@ const db = require('../../sql/index.js');
 module.exports.Messages = {
   getMessages: ({ roomname }, callback) => {
     sql = `SELECT m.id, m.message, u.username, r.roomname
-             FROM messages m 
-             INNER JOIN rooms r ON m.roomID = r.id
-             INNER JOIN users u ON m.userID = u.id
-             WHERE r.roomname = ?`;
+               FROM messages m 
+               INNER JOIN rooms r ON m.roomID = r.id
+               INNER JOIN users u ON m.userID = u.id
+               WHERE r.roomname = ?`;
     db.query(sql, [roomname], callback);
   },
   saveMessage: ({ message, username, roomname }, callback) => {
