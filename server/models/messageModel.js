@@ -6,8 +6,7 @@ module.exports.Messages = {
              FROM messages m 
              INNER JOIN rooms r ON m.roomID = r.id
              INNER JOIN users u ON m.userID = u.id
-             WHERE r.roomname = ?
-              `;
+             WHERE r.roomname = ?`;
     db.query(sql, [roomname], callback);
   },
   saveMessage: ({ message, username, roomname }, callback) => {

@@ -1,18 +1,23 @@
 const db = require('../models/messageModel');
-var addID = function(message, id) {
+var addID = (message, id) => {
   var newMessage = message;
   newMessage.id = id;
   return newMessage;
 };
+
+var handleError = (err, res) => {
+  console.log(err);
+  res.send(400);
+};
 module.exports.Messages = {
   getMessages: (req, res) => {
     db.Messages.getMessages(req.params, (err, result) => {
-      err ? console.log(err) : res.send(result);
+      err ? handleError(err, res) : res.send(result);
     });
   },
   addMessage: (req, res) => {
     db.Messages.saveMessage(req.body, (err, { insertId }) => {
-      err ? res.sendStatus(400) : res.send(addID(req.body, insertId));
+      err ? handleError(err, res) : res.send(addID(req.body, insertId));
     });
   }
 };
@@ -20,7 +25,7 @@ module.exports.Messages = {
 module.exports.Rooms = {
   getRooms: (req, res) => {
     db.Rooms.getRooms((err, result) => {
-      err ? console.log(err) : res.send(result);
+      err ? handleError(err, res) : res.send(result);
     });
   },
   addRoom: (req, res) => {
