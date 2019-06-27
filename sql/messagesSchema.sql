@@ -1,0 +1,27 @@
+DROP DATABASE IF EXISTS chatterbox;
+CREATE DATABASE chatterbox;
+USE chatterbox;
+
+CREATE TABLE messages(
+  id INTEGER AUTO_INCREMENT,
+  message VARCHAR(255) NOT NULL,
+  userID INTEGER NOT NULL,
+  messageID INTEGER NOT NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE users(
+  id INTEGER AUTO_INCREMENT,
+  username VARCHAR(255) NOT NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE rooms(
+  id INTEGER AUTO_INCREMENT,
+  roomname VARCHAR(255) NOT NULL DEFAULT 'lobby',
+  PRIMARY KEY(id)
+)
+
+
+
+
