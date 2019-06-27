@@ -23,6 +23,12 @@ var messageSchema = new Schema(
   { timestamps: true }
 );
 
+var roomSchema = new Schema({
+  room: String
+});
+
 var Message = mongoose.model('Message', messageSchema);
+var Room = mongoose.model('Room', roomSchema);
 
 module.exports = Message;
+module.exports = Room;

@@ -1,4 +1,5 @@
 const Messages = require('../../db');
+const Rooms = require('../../db');
 
 module.exports = {
   saveMessage: message => {
@@ -6,6 +7,6 @@ module.exports = {
   },
 
   getMessages: room => {
-    return Messages.find(room);
+    return Messages.find(roo);
   }
 };
