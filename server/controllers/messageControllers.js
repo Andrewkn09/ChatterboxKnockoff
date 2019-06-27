@@ -5,7 +5,11 @@ var addID = function(message, id) {
   return newMessage;
 };
 module.exports.Messages = {
-  getMessages: (req, res) => {},
+  getMessages: (req, res) => {
+    db.Messages.getMessages(req.params, (err, result) => {
+      err ? console.log(err) : res.send(result);
+    });
+  },
   addMessage: (req, res) => {
     db.Messages.saveMessage(req.body, (err, { insertId }) => {
       err ? res.sendStatus(400) : res.send(addID(req.body, insertId));
