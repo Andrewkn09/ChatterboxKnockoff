@@ -8,6 +8,7 @@ export default class RoomForm extends Component {
       roomList: []
     };
     this.updateRooms = this.updateRooms.bind(this);
+    this.updateCurrentRoom = this.updateCurrentRoom.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -21,8 +22,14 @@ export default class RoomForm extends Component {
     });
   }
 
-  handleChange(e) {
-    this.setState({ value: e.target.value });
+  updateCurrentRoom(roomname) {
+    this.setState({ value: roomname }, () => {
+      this.props.handleUpdate(roomname);
+    });
+  }
+  handleChange(e, roomname) {
+    var roomname = e.target.value || roomname;
+    this.updateCurrentRoom(roomname);
   }
 
   handleSubmit(e) {
@@ -33,7 +40,7 @@ export default class RoomForm extends Component {
         return this.updateRooms();
       })
       .then(result => {
-        this.setState({ value: roomname });
+        this.updateCurrentRoom(roomname);
       })
       .catch(err => console.log('Room already added'));
   }

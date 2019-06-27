@@ -21,7 +21,6 @@ export default class SearchForm extends Component {
 
     const { username, roomname, handleUpdate } = this.props;
     const { message } = this.state;
-    console.log(this.props.username);
     Axios.post('/messages/', { message, username, roomname })
       .then(result => {
         handleUpdate();

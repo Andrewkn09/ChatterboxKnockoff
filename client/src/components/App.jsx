@@ -13,23 +13,27 @@ export default class App extends Component {
     };
     this.updateMessages = this.updateMessages.bind(this);
   }
-
-  updateMessages() {
-    return Axios.get(`/messages/${this.state.currentRoom}`).then(({ data }) => {
-      this.setState({
-        messages: data
-      });
-    });
+  //update messages and currentroom depending on the room passed in
+  updateMessages(roomname = this.state.currentRoom) {
+    Axios.get(`/messages/${roomname}`)
+      .then(({ data }) => {
+        this.setState({
+          messages: data,
+          currentRoom: roomname
+        });
+      })
+      .catch(err => console.log(err));
   }
 
+  //
   componentDidMount() {
-    while (!currentUser) {
-      var currentUser = prompt('Enter username');
+    while (!username) {
+      var username = prompt('Enter username');
     }
-    Axios.post('/users', { currentUser }).catch(err =>
+    Axios.post('/users', { username }).catch(err =>
       console.log('User exists already')
     );
-    this.setState({ currentUser }, this.updateMessages);
+    this.setState({ currentUser: username }, this.updateMessages);
   }
 
   render() {
@@ -38,7 +42,7 @@ export default class App extends Component {
       <div>
         <h1>Chatterbox</h1>
         <div>
-          <RoomForm />
+          <RoomForm handleUpdate={this.updateMessages} />
           <SearchForm
             username={currentUser}
             roomname={currentRoom}

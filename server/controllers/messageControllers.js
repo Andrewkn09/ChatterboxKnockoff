@@ -7,8 +7,9 @@ module.exports.Messages = {
     });
   },
   addMessage: (req, res) => {
-    db.Messages.saveMessage(req.body, (err, { insertId }) => {
-      err ? handleError(err, res) : res.send(addID(req.body, insertId));
+    console.log(req.body);
+    db.Messages.saveMessage(req.body, (err, result) => {
+      err ? handleError(err, res) : res.send('success');
     });
   }
 };

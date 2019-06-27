@@ -10,6 +10,7 @@ module.exports.Messages = {
     db.query(sql, [roomname], callback);
   },
   saveMessage: ({ message, username, roomname }, callback) => {
+    console.log(`${message} and ${username} and ${roomname}`);
     sql = `INSERT INTO messages (message, userID, roomID) 
           VALUES ( ?,
             (SELECT id FROM users WHERE username = ?), 
