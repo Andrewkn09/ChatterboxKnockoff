@@ -4,7 +4,9 @@ const messageController = require('../controllers/messageControllers.js');
 
 router.get('/rooms', messageController.Rooms.getRooms);
 router.post('/rooms', messageController.Rooms.addRoom);
+router.post('/users', messageController.Users.addUser);
 
+//MONGODB =============================================
 // router.get('/messages/:roomname', messageController.getMessages);
 // router.post('/messages', messageController.saveMessage);
 // router.get('/rooms', messageController.getRooms);

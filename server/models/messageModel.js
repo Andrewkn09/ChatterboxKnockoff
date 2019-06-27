@@ -16,7 +16,10 @@ module.exports.Rooms = {
   }
 };
 module.exports.Users = {
-  addUser: username => {}
+  addUser: (username, callback) => {
+    sql = 'INSERT INTO users (username) VALUES (?)';
+    db.query(sql, [username], callback);
+  }
 };
 
 //MONGODB ===================================================

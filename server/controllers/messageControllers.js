@@ -7,7 +7,7 @@ module.exports.Messages = {
 module.exports.Rooms = {
   addRoom: (req, res) => {
     db.Rooms.addRoom(req.body.roomname, (err, result) => {
-      err ? console.log(err) : res.send('Added room');
+      err ? res.sendStatus(400) : res.send('Added room');
     });
   },
   getRooms: (req, res) => {
@@ -17,7 +17,11 @@ module.exports.Rooms = {
   }
 };
 module.exports.Users = {
-  addUser: (req, res) => {}
+  addUser: (req, res) => {
+    db.Users.addUser(req.body.username, (err, result) => {
+      err ? res.sendStatus(400) : res.send('Added user');
+    });
+  }
 };
 //MONGODB ===========================================
 // const messageModel = require('../models/messageModel.js');
