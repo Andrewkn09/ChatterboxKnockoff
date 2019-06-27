@@ -4,7 +4,7 @@ mongoose.Promise = Promise;
 if (process.env.MONGODB_URI) {
   mongoose.connect(process.env.MONGODB_URI);
 } else {
-  mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
+  mongoose.connect('mongodb://localhost/chatterbox', { useNewUrlParser: true });
 }
 
 const db = mongoose.connection;
@@ -14,12 +14,15 @@ db.once('open', () => {
 });
 
 var Schema = mongoose.Schema;
-var messageSchema = new Schema({
-  username: String,
-  message: String,
-  room: String
-});
+var messageSchema = new Schema(
+  {
+    username: String,
+    message: String,
+    room: String
+  },
+  { timestamps: true }
+);
 
-var message = mongoose.model('Message', messageSchema);
+var Message = mongoose.model('Message', messageSchema);
 
-module.exports = message;
+module.exports = Message;
