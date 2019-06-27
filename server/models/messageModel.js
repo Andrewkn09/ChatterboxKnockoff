@@ -6,11 +6,11 @@ module.exports.Messages = {
                FROM messages m 
                INNER JOIN rooms r ON m.roomID = r.id
                INNER JOIN users u ON m.userID = u.id
-               WHERE r.roomname = ?`;
+               WHERE r.roomname = ?
+               ORDER BY m.id DESC`;
     db.query(sql, [roomname], callback);
   },
   saveMessage: ({ message, username, roomname }, callback) => {
-    console.log(`${message} and ${username} and ${roomname}`);
     sql = `INSERT INTO messages (message, userID, roomID) 
           VALUES ( ?,
             (SELECT id FROM users WHERE username = ?), 

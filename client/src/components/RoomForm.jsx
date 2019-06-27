@@ -34,7 +34,7 @@ export default class RoomForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    var roomname = prompt('enter roomname');
+    var roomname = prompt('Enter a room');
     Axios.post('/rooms', { roomname })
       .then(result => {
         return this.updateRooms();
@@ -47,9 +47,9 @@ export default class RoomForm extends Component {
   render() {
     const { value, roomList } = this.state;
     return (
-      <form>
-        <label>Room: </label>
-        <select value={value} onChange={this.handleChange}>
+      <form className='roomSearch'>
+        <label className='label'>Room: </label>
+        <select value={value} onChange={this.handleChange} className='select'>
           {roomList.map(({ id, roomname }) => {
             return (
               <option key={id} value={roomname}>
@@ -58,7 +58,12 @@ export default class RoomForm extends Component {
             );
           })}
         </select>
-        <input type='submit' value='Add room' onClick={this.handleSubmit} />
+        <input
+          className='submit'
+          type='submit'
+          value='Add room'
+          onClick={this.handleSubmit}
+        />
       </form>
     );
   }

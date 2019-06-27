@@ -25,10 +25,10 @@ export default class App extends Component {
       .catch(err => console.log(err));
   }
 
-  //
+  //TODO: FIX COMMENT
   componentDidMount() {
     while (!username) {
-      var username = prompt('Enter username');
+      var username = prompt('Enter a Username');
     }
     Axios.post('/users', { username }).catch(err =>
       console.log('User exists already')
@@ -39,7 +39,7 @@ export default class App extends Component {
   render() {
     const { messages, currentUser, currentRoom } = this.state;
     return (
-      <div>
+      <div className='container'>
         <h1>Chatterbox</h1>
         <div>
           <RoomForm handleUpdate={this.updateMessages} />

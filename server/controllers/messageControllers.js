@@ -34,12 +34,6 @@ module.exports.Users = {
   }
 };
 
-var addID = (message, id) => {
-  var newMessage = message;
-  newMessage.id = id;
-  return newMessage;
-};
-
 var handleError = (err, res) => {
   console.log(err);
   res.sendStatus(500);

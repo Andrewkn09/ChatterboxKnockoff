@@ -5,9 +5,10 @@ export default class MessageEntry extends Component {
     const { username, message } = this.props.content;
     return (
       <div className='chat'>
-        <div className='username'>{username}:</div>
+        <h5 className='username'>{username}:</h5>
         <div>{message}</div>
       </div>
     );
+    5;
   }
 }

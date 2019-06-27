@@ -25,18 +25,23 @@ export default class SearchForm extends Component {
       .then(result => {
         handleUpdate();
       })
+      .then(result => {
+        this.setState({ message: '' });
+      })
       .catch(err => console.log(err));
   }
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className='search'>
           <input
             type='text'
+            className='message'
             onChange={this.handleChange}
             value={this.state.message}
+            placeholder='Enter message'
           />
-          <input type='submit' value='Submit' />
+          <input type='submit' value='Submit' className='submit' />
         </form>
       </div>
     );
