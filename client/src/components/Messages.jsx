@@ -4,7 +4,7 @@ const Messages = ({ messages }) => {
   return (
     <div className='chats'>
       {messages.map(message => {
-        return <MessageEntry key={message.id} content={message} />;
+        return <MessageEntry key={message._id} content={message} />;
       })}
     </div>
   );

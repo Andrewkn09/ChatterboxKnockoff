@@ -25,7 +25,6 @@ export default class App extends Component {
       .catch(err => console.log(err));
   }
 
-  //TODO: FIX COMMENT
   componentDidMount() {
     while (!username) {
       var username = prompt('Enter a Username');
