@@ -15,6 +15,9 @@
   },
   "author": "Andrew Kan",
   "license": "ISC",
+  "engines": {
+    "node": "10.16.0"
+  },
   "bugs": {
     "url": "https://github.com/Andrewkn09/ChatterboxKnockoff/issues"
   },
