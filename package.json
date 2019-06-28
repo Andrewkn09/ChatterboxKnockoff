@@ -7,7 +7,7 @@
     "clean": "rm dist/bundle.js",
     "build-dev": "webpack -d --watch",
     "build-prod": "webpack -p --mode production",
-    "start": "nodemon server/index.js "
+    "start": "node server/index.js "
   },
   "repository": {
     "type": "git",
