@@ -32,7 +32,9 @@ export default class App extends Component {
     Axios.post('/users', { username }).catch(err =>
       console.log('User exists already')
     );
-    this.setState({ currentUser: username }, this.updateMessages);
+    this.setState({ currentUser: username }, () => {
+      setInterval(this.updateMessages, 1000);
+    });
   }
 
   render() {
