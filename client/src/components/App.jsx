@@ -25,6 +25,12 @@ export default class App extends Component {
       .catch(err => console.log(err));
   }
 
+  refresh() {
+    setInterval(() => {
+      this.updateMessages(this.state.currentRoom);
+    }, 500);
+  }
+
   componentDidMount() {
     while (!username) {
       var username = prompt('Enter a Username');
@@ -32,9 +38,7 @@ export default class App extends Component {
     Axios.post('/users', { username }).catch(err =>
       console.log('User exists already')
     );
-    this.setState({ currentUser: username }, () => {
-      setInterval(this.updateMessages, 1000);
-    });
+    this.setState({ currentUser: username }, this.refresh);
   }
 
   render() {
